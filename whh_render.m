@@ -87,7 +87,7 @@ for i = 0:img_rsl(1)-1
 end
 %1.2 imagin plane是非平面的情形
 
-%2 各坐标变换到各view中去
+%2 各坐标变换到各view中去q
 %2.1 imaging plane是平面的情形
 
 
