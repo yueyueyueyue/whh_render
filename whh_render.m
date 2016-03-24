@@ -14,6 +14,8 @@ v_sensor_size = 32;
 v_fov = 2*rad2deg(atan(v_sensor_size/2/v_focal_length));
 
 view_cnt = (steps_x*2+1)*(steps_y*2+1); %count of views
+view_cnt_x = steps_x*2+1;
+view_cnt_y = steps_y*2+1;
 view_center_center = [0, 0, dz]'; %the center of center view
 view_img_plane_z = 1/tand(fov/2);
 view_center_bounding_box = [[-1 1 view_img_plane_z]' [1 -1 view_img_plane_z]'];%the bounding box of the center_view
@@ -89,7 +91,11 @@ end
 
 %2 各坐标变换到各view中去q
 %2.1 imaging plane是平面的情形
-
+for i = 1:view_cnt_y
+    for j = 1:view_cnt_x
+        
+    end
+end
 
 %2.2 imaging plane是非平面的情形
 
