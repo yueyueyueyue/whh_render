@@ -91,15 +91,24 @@ end
 
 %2 各坐标变换到各view中去q
 %2.1 imaging plane是平面的情形
-for i = 1:view_cnt_y
-    for j = 1:view_cnt_x
-        
+for k = 1:img_rsl(1)*img_rsl(2)
+    weight = 0;
+    for i = 1:view_cnt_y
+        for j = 1:view_cnt_x
+            [result, intersection] = line_plane_intersection();
+            if result ~= 0
+                weight = weight + 1;
+            end
+        end
     end
 end
-
 %2.2 imaging plane是非平面的情形
 
 %3 插值获得各点rgb值
 %4 得到所需图像
 
 imshow(im);
+
+function [result, intersection] = line_plane_intersection()
+
+end
