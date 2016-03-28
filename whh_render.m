@@ -95,7 +95,8 @@ for k = 1:img_rsl(1)*img_rsl(2)
     weight = 0;
     for i = 1:view_cnt_y
         for j = 1:view_cnt_x
-            [result, intersection] = line_plane_intersection();
+            
+            [result, intersection] = line_plane_intersection(a, b, c, D, E);
             if result ~= 0
                 weight = weight + 1;
             end
@@ -107,8 +108,4 @@ end
 %3 插值获得各点rgb值
 %4 得到所需图像
 
-imshow(im);
-
-function [result, intersection] = line_plane_intersection()
-
-end
+imshow(im)
