@@ -22,7 +22,7 @@ function varargout = matlab_gui_test(varargin)
 
 % Edit the above text to modify the response to help matlab_gui_test
 
-% Last Modified by GUIDE v2.5 28-Mar-2016 10:45:50
+% Last Modified by GUIDE v2.5 29-Mar-2016 11:31:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -243,8 +243,13 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 axes(handles.axes1);
 cnt = 100;
 x = linspace(str2num(get(handles.edit1, 'string')), str2num(get(handles.edit2, 'string')), cnt);
-a = get(handles.slider1, 'Value');b = get(handles.slider1, 'Value');c = get(handles.slider1, 'Value');
+a = get(handles.slider1, 'Value');b = get(handles.slider2, 'Value');c = get(handles.slider3, 'Value');
 y = a*x+b*x.^2+c*x.^3;
 plot(x, y);
 
 
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
