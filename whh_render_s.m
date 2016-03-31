@@ -3,21 +3,11 @@
 %0 数据的读取,各种参数的设定
 
 %0.1 views的分布情况
-view_img_rsl = [768 768]'; %view image resolution
-
-[space_range_x, space_range_y] = deal(3, 3);
-[steps_x, steps_y] = deal(2, 2);
-[dx, dy] = deal(space_range_x/steps_x, space_range_y/steps_y); %distance between adjacent views
-dz = 20; %the z positon of view points
-v_focal_length = 300;
-v_sensor_size = 32;
-v_fov = 2*rad2deg(atan(v_sensor_size/2/v_focal_length));
 
 view_cnt = (steps_x*2+1)*(steps_y*2+1); %count of views
-view_cnt_x = steps_x*2+1;
-view_cnt_y = steps_y*2+1;
-view_center_center = [0, 0, dz]'; %the center of center view
+
 view_img_plane_z = 1/tand(fov/2);
+
 view_center_bounding_box = [[-1 1 view_img_plane_z]' [1 -1 view_img_plane_z]'];%the bounding box of the center_view
 
 %the position of views
