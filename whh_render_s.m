@@ -22,43 +22,8 @@ end
 
 
 
-%0.2 图片读取
-views = zeros(view_cnt_xy(1),view_cnt_xy(2), k);
-%'..\cube_hci_plugin\cubedata1\000_0000.png'
-%folder = '..\cube_hci_plugin\cubedata1\'; suffix = '_000.png';
-%'C:\tmp\images\000_0001.png'
-folder = 'C:\tmp\images\'; suffix = '_0001.png';
 
-for i = 0:view_cnt-1
-    if i<10 
-        im = imread([folder '00' num2str(i) suffix]); 
-    elseif i<100
-        im = imread([folder '0' num2str(i) suffix]); 
-    else
-        im = imread([folder num2str(i) suffix]);
-    end    
-end
 
-%0.3 imaging plane的参数设定
-img_p = [0 0 0]; %[0, 0, z] image's view position
-dis = 20; %the distance between viewpoint and imaging plane
-img_r = [90 0 0]; %the rotation in xyz-euler sequence
-img_r = img_r.*pi./180;
-%calc
-img_box_half_width = dis*tan(fov/2);
-img_box_half_height = img_box_half_width;
-%top_left点 top_right点 bottom_left点
-img_tl = [-img_box_half_width, img_box_half_height, 0]; %the top left point of the image
-img_tr = [ img_box_half_width, img_box_half_height, 0]; %the top right point of the image
-img_bl = [2*img_box_half_width,0,0]; %the bottom left point of the image
-%旋转
-R_x = [1 0 0; 0 cos(img_r(1)) -sin(img_r(1)); 0 sin(img_r(1)) cos(img_r(1))];
-R_y = [cos(img_r(2)) 0 sin(img_r(2)); 0 1 0; -sin(img_r(2)) 0 cos(img_r(2))];
-R_z = [cos(img_r(3)) -sin(img_r(3)) 0; sin(img_r(3)) cos(img_r(3)); 0 0 1];
-R = R_z*R_y*R_x;
-img_tltrbl = [img_tl' img_tr' img_bl'];
-img_tltrbl = R*(img_tltrbl - [img_p' img_p' img_p']) + [img_p' img_p' img_p'];
-[img_tl, img_tr, img_bl] = deal(img_tltrbl(:,1), img_tltrbl(:,2), img_tltrbl(:,3));
 
 
 
