@@ -377,6 +377,27 @@ function draw_Callback(hObject, eventdata, handles)
 % hObject    handle to sdraw (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+data = whh_read_pics_of_views('C:\tmp\images\', '_0001.png', handles);
+img_cor = whh_imging_plane_coordinate(handles); %img(:,:,1) is the x coordiante of the plane
+vplanes = whh_view_planes; %the Q-CD planes of views; {QCD, QCD, QCD,...}
+vplanescnt = size(vplanes);
+
+position = str2num(get(handles.position, 'string'));
+
+
+[height width ~] = size(img_cor);
+for i = 1:height
+    for j = 1:width
+        cor = squeeze( img_cor(i, j, :) );
+        for v = 1:vh
+            
+        end
+        = WHH_line_plane_intersection(position, cor, vplanes, data);
+    end
+end
+
+
+
 
 %folder = 'C:\tmp\images\'; suffix = '_0001.png';
 function [data] = whh_read_pics_of_views(folder, suffix, handles)
@@ -403,7 +424,7 @@ for i = 0:view_cnt-1
     data(y, x, :) = im;
 end
 
-function im_cor = whh_imgaing_plane_coordinate(handles)
+function im_cor = whh_imging_plane_coordinate(handles)
 %imaging plane的参数设定
 positoin = str2num(get(handles.position, 'String'));%image's view positionsize = str2num(get(handles.distance, 'String')); %the distance between viewpoint and imaging plane
 size = str2num(get(handles.size, 'String'));
