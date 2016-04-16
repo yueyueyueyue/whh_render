@@ -377,89 +377,9 @@ function draw_Callback(hObject, eventdata, handles)
 % hObject    handle to sdraw (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = whh_read_pics_of_views('C:\tmp\images\', '_0001.png', handles);
-img_cor = whh_imging_plane_coordinate(handles); %img(:,:,1) is the x coordiante of the plane
-vplanes = whh_view_planes; %the Q-CD planes of views; {QCD, QCD, QCD,...}
-vplanescnt = size(vplanes);
-
-position = str2num(get(handles.position, 'string'));
-
-
-[height width ~] = size(img_cor);
-for i = 1:height
-    for j = 1:width
-        cor = squeeze( img_cor(i, j, :) );
-        for v = 1:vh
-            
-        end
-        = WHH_line_plane_intersection(position, cor, vplanes, data);
-    end
-end
-
-
-
-
-%folder = 'C:\tmp\images\'; suffix = '_0001.png';
-function [data] = whh_read_pics_of_views(folder, suffix, handles)
-%图片读取
-view_cnt_xy = str2num( get(handles.view_cnt, 'String'));
-k = 3;
-data = zeros(view_cnt_xy(1),view_cnt_xy(2), k);
-%'..\cube_hci_plugin\cubedata1\000_0000.png'
-%folder = '..\cube_hci_plugin\cubedata1\'; suffix = '_000.png';
-%'C:\tmp\images\000_0001.png'
-%folder = 'C:\tmp\images\'; suffix = '_0001.png';
-
-for i = 0:view_cnt-1
-    if i<10 
-        im = imread([folder '00' num2str(i) suffix]); 
-    elseif i<100
-        im = imread([folder '0' num2str(i) suffix]); 
-    else
-        im = imread([folder num2str(i) suffix]);
-    end    
-    
-    view_cnt_yx = flipud(view_cnt_xy);
-    [y, x] = ind2sub(view_cnt_yx, i+1);
-    data(y, x, :) = im;
-end
-
-function im_cor = whh_imging_plane_coordinate(handles)
-%imaging plane的参数设定
-positoin = str2num(get(handles.position, 'String'));%image's view positionsize = str2num(get(handles.distance, 'String')); %the distance between viewpoint and imaging plane
-size = str2num(get(handles.size, 'String'));
-rotation = str2num(get(handles.rotation, 'String')); %the rotation in xyz-euler sequence
-%calc
-[height, width] = deal(size(1), size(2));
-%top_left点 top_right点 bottom_left点
-img_tl = [-width/2, height/2, distance]; %the top left point of the image
-img_tr = [ width/2, height/2, distance]; %the top right point of the image
-img_bl = [-width/2,-height/2, distance]; %the bottom left point of the image
-%旋转
-R_x = [1 0 0; 0 cosd(rotation(1)) -sind(rotation(1)); 0 sind(rotation(1)) cosd(rotation(1))];
-R_y = [cosd(rotation(2)) 0 sind(rotation(2)); 0 1 0; -sind(rotation(2)) 0 cosd(rotation(2))];
-R_z = [cosd(rotation(3)) -sind(rotation(3)) 0; sind(rotation(3)) cosd(rotation(3)); 0 0 1];
-R = R_z*R_y*R_x;
-img_tltrbl = [img_tl' img_tr' img_bl'];
-T = str2num(get(handles.position), 'String');
-img_tltrbl = R*img_tltrbl + T;
-[img_tl, img_tr, img_bl] = deal(img_tltrbl(:,1), img_tltrbl(:,2), img_tltrbl(:,3));
-
-resolution = str2num( get(handles.resolution, 'String') );
-
-h_v = img_tr - img_tl;      %horizontal vector
-v_v    = img_bl - img_tl;   %vertical vector
-
-[j i] = meshgrid( linspace(0,1,resolution(2)), linspace(0,1,resolution(1)));
-
-img_cor = zeros(resolution(2), resolution(1), 3);
-
-img_cor(:,:,1) = img_tl(1) + i.*h_v(1) + j.*v_v(1);
-img_cor(:,:,2) = img_tl(2) + i.*h_v(2) + j.*v_v(2);
-img_cor(:,:,3) = img_tl(3) + i.*h_v(3) + j.*v_v(3);
-
-
-
+pic = WHH_render(handles);
+axes(handles.axes1);
+imshow(pic);
 
 function size_Callback(hObject, eventdata, handles)
 % hObject    handle to size (see GCBO)
