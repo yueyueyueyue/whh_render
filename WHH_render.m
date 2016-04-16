@@ -5,12 +5,15 @@ function img = WHH_render( handles )
 data = whh_read_pics_of_views('C:\tmp\images\', '_0001.png', handles); %data(y, x, :) is one image;
 data_size = str2num(get(handles.view_rsl, 'string'));% h w
 
-img_cor = whh_imging_plane_coordinate(handles); %img(:,:,1) is the x coordiante of the plane
+img_coor = whh_imging_plane_coordinate(handles); %img(:,:,1) is the x coordiante of the plane
 
-vplanes = whh_view_planes; %the Q-CD planes of views; {QCD, QCD, QCD,...}
-vplanes_cnt = size(vplanes);
+%vplanes = whh_view_planes(handles); %the Q-CD planes of views; {QCD, QCD, QCD,...}
+%vplanes_cnt = size(vplanes);
+Q = [-1, 1, 1.25]';
+C = [2, 0, 0]; %[1,1,1.25]'-[-1,1,1.25]';
+D = [0, 2, 0]; %[-1,-1,1.25]'-[-1,1,1.25]';
+viewpoints = whh_view_points(handles);%viewpoints(i,j,:)is a view-point
 
-position = str2num(get(handles.position, 'string'));
 
 [height, width, ~] = size(img_cor);
 img = zeros(height, width, 3);
