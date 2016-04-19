@@ -1,4 +1,4 @@
-function img_coor = whh_imging_plane_coordinate ( handles )
+function img_coor = whh_imging_plane_coordinate( handles )
 %WHH_IMGING_PLANE_COORDINATE  Summary of this function goes here
 %   初始朝向是朝向z轴负方向，即看向z轴里面
 %   初始位置认为是原点
@@ -16,11 +16,11 @@ img_bl = [-width/2,-height/2, -distance]; %the bottom left point of the image
 %旋转
 R_x = [1 0 0; 0 cosd(rotation(1)) -sind(rotation(1)); 0 sind(rotation(1)) cosd(rotation(1))];
 R_y = [cosd(rotation(2)) 0 sind(rotation(2)); 0 1 0; -sind(rotation(2)) 0 cosd(rotation(2))];
-R_z = [cosd(rotation(3)) -sind(rotation(3)) 0; sind(rotation(3)) cosd(rotation(3)); 0 0 1];
+R_z = [cosd(rotation(3)) -sind(rotation(3)) 0; sind(rotation(3)) cosd(rotation(3)) 0; 0 0 1];
 R = R_z*R_y*R_x;
 img_tltrbl = [img_tl' img_tr' img_bl'];
-T = str2num(get(handles.position), 'String');
-img_tltrbl = R*img_tltrbl + T;
+T = str2num(get(handles.position, 'String'));
+img_tltrbl = R*img_tltrbl + [T T T];
 [img_tl, img_tr, img_bl] = deal(img_tltrbl(:,1), img_tltrbl(:,2), img_tltrbl(:,3));
 
 resolution = str2num( get(handles.resolution, 'String') );
