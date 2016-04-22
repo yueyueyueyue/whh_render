@@ -14,8 +14,9 @@ function [img_weight_, img_] = whh_line_plane_intersection( viewpoint, img_coor,
 %可以稀疏矩阵乘法来统一处理，【以后试验】
 [row, column, ~] = size(img_coor);
 A = viewpoint;
-alpha = zeros(size(img_coor));
-beta = zeros(size(img_coor));
+
+alpha = zeros(row, column);
+beta = zeros(row, column);
 for i = 1:row
     for j = 1:column
         B = squeeze(img_coor(i, j, :));
