@@ -22,7 +22,7 @@ function varargout = whh_renderer(varargin)
 
 % Edit the above text to modify the response to help whh_renderer
 
-% Last Modified by GUIDE v2.5 25-Apr-2016 10:14:29
+% Last Modified by GUIDE v2.5 25-Apr-2016 11:10:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -497,32 +497,82 @@ elseif eventdata.Key == 'e'
     set(handles.position, 'String', whh_vector2str(position) );
 elseif eventdata.Key == 'j'
     s_length = str2num(get(handles.rot_step_length, 'String'));
-    rotation = str2num(get(handles.position, 'String'));
+    rotation = str2num(get(handles.rotation, 'String'));
     rotation = rotation + [0 -s_length 0]';
-    set(handles.position, 'String', whh_vector2str(rotation) );
+    set(handles.rotation, 'String', whh_vector2str(rotation) );
 elseif eventdata.Key == 'k'
     s_length = str2num(get(handles.rot_step_length, 'String'));
-    rotation = str2num(get(handles.position, 'String'));
+    rotation = str2num(get(handles.rotation, 'String'));
     rotation = rotation + [s_length 0 0]';
-    set(handles.position, 'String', whh_vector2str(rotation) );
+    set(handles.rotation, 'String', whh_vector2str(rotation) );
 elseif eventdata.Key == 'l'
     s_length = str2num(get(handles.rot_step_length, 'String'));
-    rotation = str2num(get(handles.position, 'String'));
+    rotation = str2num(get(handles.rotation, 'String'));
     rotation = rotation + [0 s_length 0]';
-    set(handles.position, 'String', whh_vector2str(rotation) );
+    set(handles.rotation, 'String', whh_vector2str(rotation) );
 elseif eventdata.Key == 'i'
     s_length = str2num(get(handles.rot_step_length, 'String'));
-    rotation = str2num(get(handles.position, 'String'));
+    rotation = str2num(get(handles.rotation, 'String'));
     rotation = rotation + [-s_length 0 0]';
-    set(handles.position, 'String', whh_vector2str(rotation) );
+    set(handles.rotation, 'String', whh_vector2str(rotation) );
 elseif eventdata.Key == 'u'
     s_length = str2num(get(handles.rot_step_length, 'String'));
-    rotation = str2num(get(handles.position, 'String'));
+    rotation = str2num(get(handles.rotation, 'String'));
     rotation = rotation + [0 0 s_length]';
-    set(handles.position, 'String', whh_vector2str(rotation) );
+    set(handles.rotation, 'String', whh_vector2str(rotation) );
 elseif eventdata.Key == 'o'
     s_length = str2num(get(handles.rot_step_length, 'String'));
-    rotation = str2num(get(handles.position, 'String'));
+    rotation = str2num(get(handles.rotation, 'String'));
     rotation = rotation + [0 0 -s_length]';
-    set(handles.position, 'String', whh_vector2str(rotation) );
+    set(handles.rotation, 'String', whh_vector2str(rotation) );
+end
+
+pic = WHH_render(handles);
+axes(handles.axes1);
+imshow(pic);
+
+
+
+function move_step_length_Callback(hObject, eventdata, handles)
+% hObject    handle to move_step_length (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of move_step_length as text
+%        str2double(get(hObject,'String')) returns contents of move_step_length as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function move_step_length_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to move_step_length (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function rot_step_length_Callback(hObject, eventdata, handles)
+% hObject    handle to rot_step_length (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of rot_step_length as text
+%        str2double(get(hObject,'String')) returns contents of rot_step_length as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function rot_step_length_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to rot_step_length (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
 end
