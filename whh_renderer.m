@@ -22,7 +22,7 @@ function varargout = whh_renderer(varargin)
 
 % Edit the above text to modify the response to help whh_renderer
 
-% Last Modified by GUIDE v2.5 25-Apr-2016 11:10:31
+% Last Modified by GUIDE v2.5 27-Apr-2016 14:17:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -527,9 +527,12 @@ elseif eventdata.Key == 'o'
     set(handles.rotation, 'String', whh_vector2str(rotation) );
 end
 
-pic = WHH_render(handles);
-axes(handles.axes1);
-imshow(pic);
+% pic = WHH_render(handles);
+% axes(handles.axes1);
+% imshow(pic);
+
+axes(handles.axes2), hold off
+whh_draw_cameras( handles );
 
 
 
@@ -576,3 +579,11 @@ function rot_step_length_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+whh_draw_cameras(handles);
