@@ -6,15 +6,19 @@ data = whh_read_pics_of_views('C:\tmp\images\', '_0001.png', handles); %data(y, 
 data_size = str2num(get(handles.view_rsl, 'string'));% h w
 disp('date read finished');
 
-img_coor = whh_imging_plane_coordinate(handles);    %img(:,:,1) is the x coordiante of the plane
-                                                    %squeeze(img_coor(i,j,:))is a view-point
+% img_coor = whh_imging_plane_coordinate(handles);    %img(:,:,1) is the x coordiante of the plane
+%                                                     %squeeze(img_coor(i,j,:))is a view-point
+
+imging_p = whh_imging_plane(handles);  %imgine_plane:Q C D
+                                                 
 disp('img coordinate generation finished');
 
 %vplanes = whh_view_planes(handles); %the Q-CD planes of views; {QCD, QCD, QCD,...}
 
-Q = [-1, 1, 1.25]';
-C = [2, 0, 0]'; %[1,1,1.25]'-[-1,1,1.25]';
-D = [0, 2, 0]'; %[-1,-1,1.25]'-[-1,1,1.25]';
+data_p.Q = [-1, 1, 1.25]';
+data_p.C = [2, 0, 0]'; %[1,1,1.25]'-[-1,1,1.25]';
+data_p.D = [0, 2, 0]'; %[-1,-1,1.25]'-[-1,1,1.25]';
+
 viewpoints = whh_view_points(handles);%squeeze(viewpoints(i,j,:))is a view-point
 disp('viewpoints generation finished');
 
