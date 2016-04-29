@@ -15,7 +15,7 @@ function inter = whh_line_plane_intersection( A, plane, B)
 [Q, C, D] = deal(plane.Q, plane.C, plane.D);
 
 t_alpha_beta = (Q-B)\[A-B -C -D];
-[alpha_, beta_] = deal(t_alpha_beta(2), t_alpha_beta(3));
+[alpha, beta] = deal(t_alpha_beta(2), t_alpha_beta(3));
 
 inter = Q + alpha*C + beta*D;
 

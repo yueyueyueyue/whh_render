@@ -17,7 +17,7 @@ disp('img coordinate generation finished');
 
 data_p.Q = [-1, 1, 1.25]';
 data_p.C = [2, 0, 0]'; %[1,1,1.25]'-[-1,1,1.25]';
-data_p.D = [0, 2, 0]'; %[-1,-1,1.25]'-[-1,1,1.25]';
+data_p.D = [0, -2, 0]'; %[-1,-1,1.25]'-[-1,1,1.25]';
 
 viewpoints = whh_view_points(handles);%squeeze(viewpoints(i,j,:))is a view-point
 disp('viewpoints generation finished');
