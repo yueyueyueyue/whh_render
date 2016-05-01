@@ -1,7 +1,8 @@
 function inter = whh_line_plane_intersection( A, plane, B)
 %LINE_PLANE_INTERSECTION return the intersection of line AB and plane Q-CD
 %   Detailed explanation goes here
-%[A-B -C -D]*[t alpha beta]'=Q-B
+%tA + (1-t)B = Q+alphaC+betaD
+%=>[A-B -C -D]*[t alpha beta]'=Q-B
 
 %先默认不会出现退化的情形
 % AB = B - A;
@@ -14,7 +15,7 @@ function inter = whh_line_plane_intersection( A, plane, B)
 
 [Q, C, D] = deal(plane.Q, plane.C, plane.D);
 
-t_alpha_beta = (Q-B)\[A-B -C -D];
+t_alpha_beta = [A-B -C -D]\(Q-B);
 [alpha, beta] = deal(t_alpha_beta(2), t_alpha_beta(3));
 
 inter = Q + alpha*C + beta*D;
