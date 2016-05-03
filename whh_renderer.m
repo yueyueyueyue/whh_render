@@ -22,7 +22,7 @@ function varargout = whh_renderer(varargin)
 
 % Edit the above text to modify the response to help whh_renderer
 
-% Last Modified by GUIDE v2.5 27-Apr-2016 14:17:31
+% Last Modified by GUIDE v2.5 02-May-2016 16:59:33
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -587,3 +587,11 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 whh_draw_cameras(handles);
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+homotest(handles);

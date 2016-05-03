@@ -22,8 +22,6 @@ disp('draw view points');
 draw_viewpoints(vpoints, 'r*');
 axis equal
 
-homotest(handles);
-
 end
 
 function draw_camera(O, plane, plot_pattern)

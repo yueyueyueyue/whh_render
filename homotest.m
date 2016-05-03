@@ -17,29 +17,22 @@ vpoints = whh_view_points(handles);%squeeze(viewpoints(i,j,:))is a view-point
 vpoint = squeeze(vpoints(1,1,:));
 
 
-H = whh_homo_plane2plane(vpoint, data_p, imging_p);%data_p -> imging_p
+H = whh_homo_plane2plane(vpoint, imging_p, data_p);%imging_p -> data_p
 
 figure(1), hold off, view(45, 45)
-inter = whh_line_plane_intersection(vpoint, data_p, imging_p.Q);
-hold on, plot3(inter(1), inter(2), inter(3),'*k');
-inter = whh_line_plane_intersection(vpoint, data_p, imging_p.Q+imging_p.C);
-hold on, plot3(inter(1), inter(2), inter(3),'*k');
-inter = whh_line_plane_intersection(vpoint, data_p, imging_p.Q+imging_p.D);
-hold on, plot3(inter(1), inter(2), inter(3),'*k');
-
-data = [vpoint imging_p.Q];
-hold on, plot3(data(1,:)', data(2,:)', data(3,:)','-k');
-data = [vpoint imging_p.Q+imging_p.C]; 
-hold on, plot3(data(1,:)', data(2,:)', data(3,:)','-k');
-data = [vpoint imging_p.Q+imging_p.D]; 
-hold on, plot3(data(1,:)', data(2,:)', data(3,:)','-k');
-
 
 draw_viewpoints(vpoints(1,1,:), '*r');
-hold on, draw_plane(data_p, 'g-');
-hold on, draw_plane(H_X_plane(H, data_p), 'b-');
-hold on, draw_plane(imging_p, 'r-');
-hold on, draw_camera(vpoint, data_p, 'b-')
+hold on, draw_plane(data_p, 'r-');
+hold on, draw_plane(H_X_plane(H, imging_p), 'b-');
+
+p1 = [data_p.Q data_p.Q+data_p.C data_p.Q+data_p.C+data_p.D data_p.Q+data_p.D];
+data_p2 = H_X_plane(H, imging_p);
+p2 = [data_p2.Q data_p2.Q+data_p2.C data_p2.Q+data_p2.C+data_p2.D data_p2.Q+data_p2.D];
+    
+ [XI,YI] = polyxpoly(X1,Y1,X2,Y2) 
+polyxpoly(, p2);
+
+hold on, draw_plane(imging_p, 'b-');
 axis equal
 
 end

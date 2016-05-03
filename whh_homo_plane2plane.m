@@ -24,7 +24,6 @@ zerorow = [0 0 0];
 A = [x(:, 1)' zerorow zerorow; zerorow x(:, 1)' zerorow; zerorow zerorow x(:, 1)'; ...
     x(:, 2)' zerorow zerorow; zerorow x(:, 2)' zerorow; zerorow zerorow x(:, 2)'; ...
     x(:, 3)' zerorow zerorow; zerorow x(:, 3)' zerorow; zerorow zerorow x(:, 3)'];
-h = x_(:)\A; %[h1 h2 h3 h4 h5 h6 h7 h8 h9]
-H = [h(1:3);h(4:6);h(7:9)];
-
+h = A\x_(:); %[h1 h2 h3 h4 h5 h6 h7 h8 h9]'
+H = reshape(h, [3 3])';
 end
