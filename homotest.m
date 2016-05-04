@@ -29,8 +29,8 @@ p1 = [data_p.Q data_p.Q+data_p.C data_p.Q+data_p.C+data_p.D data_p.Q+data_p.D];
 data_p2 = H_X_plane(H, imging_p);
 p2 = [data_p2.Q data_p2.Q+data_p2.C data_p2.Q+data_p2.C+data_p2.D data_p2.Q+data_p2.D];
     
- [XI,YI] = polyxpoly(X1,Y1,X2,Y2) 
-polyxpoly(, p2);
+%  [XI,YI] = polyxpoly(X1,Y1,X2,Y2) 
+% polyxpoly(, p2);
 
 hold on, draw_plane(imging_p, 'b-');
 axis equal

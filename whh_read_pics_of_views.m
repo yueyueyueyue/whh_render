@@ -25,7 +25,7 @@ for i = 0:view_cnt-1
     
     view_cnt_yx = flipud(view_cnt_xy);
     [y, x] = ind2sub(view_cnt_yx, i+1);
-    data(y, x, :, :, :) = im;
+    data(y, x, :, :, :) = double(im);
 end
 
 end

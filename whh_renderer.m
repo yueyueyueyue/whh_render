@@ -22,7 +22,7 @@ function varargout = whh_renderer(varargin)
 
 % Edit the above text to modify the response to help whh_renderer
 
-% Last Modified by GUIDE v2.5 02-May-2016 16:59:33
+% Last Modified by GUIDE v2.5 04-May-2016 09:07:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -412,9 +412,17 @@ function distance_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of distance as text
 %        str2double(get(hObject,'String')) returns contents of distance as a double
 fov = str2num(get(handles.fov, 'String'));
-distance = str2num(get(handles.distance, 'String'));
+distance = get(handles.distance, 'value');
 size = [2*distance*tand(fov/2) 2*distance*tand(fov/2)]';
 set(handles.size, 'String', ['[' num2str(size(1)) ' ' num2str(size(2))  ']''']);
+set(handles.text33, 'string', distance);
+
+pic = WHH_render(handles);
+axes(handles.axes1);
+imshow(pic);
+
+whh_draw_cameras(handles);
+
 
 
 % --- Executes during object creation, after setting all properties.
@@ -439,7 +447,7 @@ function fov_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of fov as text
 %        str2double(get(hObject,'String')) returns contents of fov as a double
 fov = str2num(get(handles.fov, 'String'));
-distance = str2num(get(handles.distance, 'String'));
+distance = get(handles.distance, 'value');
 size = [2*distance*tand(fov/2) 2*distance*tand(fov/2)]';
 set(handles.size, 'String', ['[' num2str(size(1)) ' ' num2str(size(2))  ']''']);
 
@@ -527,9 +535,9 @@ elseif eventdata.Key == 'o'
     set(handles.rotation, 'String', whh_vector2str(rotation) );
 end
 
-% pic = WHH_render(handles);
-% axes(handles.axes1);
-% imshow(pic);
+pic = WHH_render(handles);
+axes(handles.axes1);
+imshow(pic);
 
 axes(handles.axes2), hold off
 whh_draw_cameras( handles );

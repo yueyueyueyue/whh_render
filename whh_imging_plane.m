@@ -4,7 +4,7 @@ function imging_plane = whh_imging_plane( handles )
 %   初始位置认为是原点
 
 %imaging plane的参数设定
-distance = str2num(get(handles.distance, 'String'));%the distance between viewpoint and imaging plane
+distance = get(handles.distance, 'value');%the distance between viewpoint and imaging plane
 size = str2num(get(handles.size, 'String'));
 rotation = str2num(get(handles.rotation, 'String')); %the rotation in xyz-euler sequence
 %calc
