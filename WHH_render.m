@@ -2,9 +2,8 @@ function img = WHH_render( handles )
 %WHH_RENDER Summary of this function goes here
 %   Detailed explanation goes here
 
-data = whh_read_pics_of_views('C:\tmp\images\', '_0000.png', handles); %data(y, x, :, :, :) is one image;
-data_size = str2num(get(handles.view_rsl, 'string'));% h w
-disp('date read finished');
+global data;%data(y, x, :, :, :) is one image;
+%data = whh_read_pics_of_views('C:\tmp\images\', '_0000.png', handles);
 
 % img_coor = whh_imging_plane_coordinate(handles);    %img(:,:,1) is the x coordiante of the plane
 %                                                     %squeeze(img_coor(i,j,:))is a view-point
@@ -59,7 +58,10 @@ for i = 1:ic
         im_(:,:,2) = interp2(data_(:,:,2), X, Y, 'linear', 0);
         im_(:,:,3) = interp2(data_(:,:,3), X, Y, 'linear', 0);
         img = img + im_;
+        
+        
     end
+    disp(i);
 end
 mask(mask==0)=1;
 img(:,:,1) = img(:,:,1)./mask;
